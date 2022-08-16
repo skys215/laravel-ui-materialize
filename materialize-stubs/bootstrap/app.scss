@@ -1,0 +1,73 @@
+// Variables
+@import 'variables';
+
+@import 'materialize-css';
+
+nav{
+    background-color: white;
+}
+.nav-wrapper{
+    padding: 0px 1rem;
+}
+
+main{
+    position:relative;
+    min-height: calc(100vh - 64px - 50px);
+
+    .page-action-btn {
+        position: fixed;
+        right: 23px;
+        bottom: 23px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 997;
+    }
+}
+main>div{
+    height: 100%;
+}
+#sidenav-left{
+    .logo-container {
+        padding: 0 16px;
+        height: 64px;
+        line-height: 64px;
+        font-size: 24px;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        box-sizing: content-box;
+
+        i.material-icons {
+            line-height: inherit;
+        }
+    }
+
+    i.material-icons,
+    li > a,
+    li > a:link,
+    li > a:visited,
+    li > a:hover,
+    li > a:active{
+        color: white;
+    }
+}
+
+.footer-copyright{
+    overflow: hidden;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px;
+    color: rgba(255, 255, 255, 0.8);
+
+    padding: 0px 1rem;
+}
+
+@media only screen and (min-width: 993px){
+    body.has-fixed-sidenav {
+        padding-left: 300px;
+    }
+    .has-fixed-sidenav .navbar-fixed nav.navbar {
+        width: calc(100% - 300px);
+        left: 300px;
+    }
+}
