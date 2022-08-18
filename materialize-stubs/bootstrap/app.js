@@ -1,1 +1,3 @@
-import 'materialize-css';
+require('materialize-css');
+
+require('jquery');

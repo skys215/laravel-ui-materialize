@@ -8,62 +8,83 @@
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <!-- Material Icons-->
+    <link href="https://fonts.loli.net/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body class="d-flex flex-column">
-    <div class="page page-center">
-      <div class="container-tight py-4">
-        <div class="text-center mb-4">
-          <a href="{{ url('/') }}" class="navbar-brand navbar-brand-autodark">{{ config('app.name') }}</a>
-        </div>
+<body>
+  <nav class="navbar nav-extended no-padding blue white-text">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">{{ config('app.name') }}</a>
+    </div>
+  </nav>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col s8 offset-s2">
 
-        @if (session('status'))
-          <div class="card card-active mb-2">
-            <div class="card-body">
-              <p>{{ session('status') }}</p>
+          <div class="card card-login">
+            <div class="card-content">
+              <span class="card-title">{{ __('auth.forgot_password.send_pwd_reset') }}</span>
+              <form action="{{ route('password.email') }}" method="POST">
+                @csrf
+                <div class="input-field">
+                  <input id="email" name="email" type="email" value="{{ old('email') }}">
+                  <label for="email">{{ __('auth.email') }}</label>
+                  @error('email')
+                    <span class="helper-text red-text">{{ $message }}</span>
+                  @enderror
+                </div>
+
+                <br><br>
+                <div>
+                  <input class="btn right" type="submit" value="{{ __('auth.forgot_password.send_pwd_reset') }}">
+                  <a href="{{ route('register') }}" class="btn-flat">{{ __('auth.register') }}</a>
+                  <a href="{{ route('login') }}" class="btn-flat">{{ __('auth.sign_in') }}</a>
+                </div>
+
+              </form>
             </div>
           </div>
-        @endif
-
-        @if(!empty($errors))
-            @if($errors->any())
-                @foreach($errors->all() as $error)
-                  <div class="card mb-2">
-                    <div class="card-status-top bg-danger"></div>
-                    <div class="card-body">
-                      <p>{{ $error }}</p>
-                    </div>
-                  </div>
-                @endforeach
-            @endif
-        @endif
-
-        <form class="card card-md" action="{{ route('password.email') }}" method="POST" autocomplete="off">
-          @csrf
-
-          <div class="card-body">
-            <h2 class="card-title text-center mb-4">{{ __('auth.forgot_password.title') }}</h2>
-            <div class="mb-3">
-              <label class="form-label">{{ __('auth.email') }}</label>
-              <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('auth.email') }}" autocomplete="off" value="{{ old('email') }}">
-
-              @error('email')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
-
-            <div class="form-footer">
-              <button type="submit" class="btn btn-primary w-100">{{ __('auth.forgot_password.send_pwd_reset') }}</button>
-            </div>
-          </div>
-        </form>
-        <div class="text-center text-muted mt-3">
-          {{ __('auth.registration.title') }} <a href="{{ route('register') }}" tabindex="-1">{{ __('auth.sign_up') }}</a>
-        </div>
-        <div class="text-center text-muted mt-3">
-          {{ __('auth.registration.have_membership') }} <a href="{{ route('login') }}" tabindex="-1">{{ __('auth.sign_in') }}</a>
         </div>
       </div>
     </div>
+  </main>
+  <footer class="page-footer blue grey-text">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">{{ config('app.name') }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2022 Copyright
+      </div>
+    </div>
+  </footer>
+
 <script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+
+@if(!empty($errors))
+    @if($errors->any())
+        <script type="text/javascript">
+            @foreach($errors->all() as $error)
+                M.toast({html: '{{ $error }}', classes: 'red'})
+            @endforeach
+        </script>
+    @endif
+@endif
+
+@if (session('status'))
+<script type="text/javascript">
+    @foreach($errors->all() as $error)
+        M.toast({html: '{{ session('status') }}', classes: 'green'})
+    @endforeach
+@endif
+</script>
+
 </body>
 </html>

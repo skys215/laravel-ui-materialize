@@ -3,11 +3,33 @@
 
 @import 'materialize-css';
 
-nav{
-    background-color: white;
+nav a,
+nav a:link,
+nav a:visited,
+nav a:hover,
+nav a:active{
+    color: white;
 }
 .nav-wrapper{
     padding: 0px 1rem;
+}
+#nav-mobile a,
+#nav-mobile a:link,
+#nav-mobile a:visited,
+#nav-mobile a:hover,
+#nav-mobile a:active{
+    color: gray;
+}
+
+.logout-btn{
+    position: relative;
+    bottom: 0;
+
+    a,
+    a:link, a:visited,
+    a:active{
+        color: white;
+    }
 }
 
 main{
@@ -56,9 +78,6 @@ main>div{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0px;
-    color: rgba(255, 255, 255, 0.8);
-
     padding: 0px 1rem;
 }
 

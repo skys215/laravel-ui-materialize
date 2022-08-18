@@ -8,100 +8,102 @@
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <!-- Material Icons-->
+    <link href="https://fonts.loli.net/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body class="d-flex flex-column">
-    <div class="page page-center">
-      <div class="container-tight py-4">
-        <div class="text-center mb-4">
-          <a href="{{ url('/') }}" class="navbar-brand navbar-brand-autodark">{{ config('app.name') }}</a>
-        </div>
+<body>
+  <nav class="navbar nav-extended no-padding blue white-text">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">{{ config('app.name') }}</a>
+    </div>
+  </nav>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col s8 offset-s2">
 
-        @if(!empty($errors))
-            @if($errors->any())
-                @foreach($errors->all() as $error)
-                  <div class="card mb-2">
-                    <div class="card-status-top bg-danger"></div>
-                    <div class="card-body">
-                      <p>{{ $error }}</p>
-                    </div>
-                  </div>
-                @endforeach
-            @endif
-        @endif
+          <div class="card card-login">
+            <div class="card-content">
+              <span class="card-title">{{ __('auth.registration.title') }}</span>
+              <form action="{{ route('register') }}" method="POST">
+                @csrf
 
-        <form class="card card-md" action="{{ route('register') }}" method="POST" autocomplete="off">
-          @csrf
-          <div class="card-body">
-            <h2 class="card-title text-center mb-4">{{ __('auth.registration.title') }}</h2>
+                <div class="input-field">
+                  <input id="name" name="name" type="text" value="{{ old('name') }}">
+                  <label for="name">{{ __('auth.full_name') }}</label>
+                  @error('name')
+                    <span class="helper-text red-text">{{ $message }}</span>
+                  @enderror
+                </div>
 
-            <div class="mb-3">
-              <label class="form-label">{{ __('auth.name') }}</label>
-              <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="{{ __('auth.full_name') }}" autocomplete="off" value="{{ old('name') }}">
+                <div class="input-field">
+                  <input id="email" name="email" type="email" value="{{ old('email') }}">
+                  <label for="email">{{ __('auth.email') }}</label>
+                  @error('email')
+                    <span class="helper-text red-text">{{ $message }}</span>
+                  @enderror
+                </div>
 
-              @error('name')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
+                <div class="input-field">
+                  <input id="password" name="password" type="password">
+                  <label for="password">{{ __('auth.password') }}</label>
+                  @error('password')
+                    <span class="helper-text red-text">{{ $message }}</span>
+                  @enderror
+                </div>
 
-            <div class="mb-3">
-              <label class="form-label">{{ __('auth.email') }}</label>
-              <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('auth.email') }}" autocomplete="off" value="{{ old('email') }}">
+                <div class="input-field">
+                  <input id="password_confirmation" name="password_confirmation" type="password">
+                  <label for="password_confirmation">{{ __('auth.confirm_password') }}</label>
+                </div>
 
-              @error('email')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
+                <div class="input-field">
+                  <label>
+                  <input type="checkbox" />
+                    <span>{{ __('auth.registration.i_agree') }} <a href="#">{{ __('auth.registration.terms') }}</a>.</span>
+                  </label>
+                </div>
 
-            <div class="mb-2">
-              <label class="form-label">
-                {{ __('auth.password') }}
-              </label>
-              <div class="input-group input-group-flat">
-                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{ __('auth.password') }}"  autocomplete="off">
-                <span class="input-group-text">
-                  <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://materialize-icons.io/i/eye -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
-                  </a>
-                </span>
-                @error('password')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
-            </div>
+                <br><br>
+                <div>
+                  <input class="btn right" type="submit" value="{{ __('auth.register') }}">
+                  <a href="{{ route('register') }}" class="btn-flat">{{ __('auth.sign_in') }}</a>
+                </div>
 
-            <div class="mb-2">
-              <label class="form-label">
-                {{ __('auth.confirm_password') }}
-              </label>
-              <div class="input-group input-group-flat">
-                <input type="password" class="form-control" name="password_confirmation" placeholder="{{ __('auth.retype_password') }}"  autocomplete="off">
-                <span class="input-group-text">
-                  <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://materialize-icons.io/i/eye -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
-                  </a>
-                </span>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-check">
-                <input type="checkbox" class="form-check-input"/>
-                <span class="form-check-label">{{ __('auth.registration.i_agree') }} <a href="#" tabindex="-1">{{ __('auth.registration.terms') }}</a>.</span>
-              </label>
-            </div>
-
-            <div class="form-footer">
-              <button type="submit" class="btn btn-primary w-100">{{ __('auth.register') }}</button>
+              </form>
             </div>
           </div>
-        </form>
-
-        <div class="text-center text-muted mt-3">
-          {{ __('auth.registration.have_membership') }} <a href="{{ route('login') }}" tabindex="-1">{{ __('auth.sign_in') }}</a>
         </div>
       </div>
     </div>
-<script src="{{ mix('js/app.js') }}"></script>
+  </main>
 
+  <footer class="page-footer blue grey-text">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">{{ config('app.name') }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2022 Copyright
+      </div>
+    </div>
+  </footer>
+
+<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+@if(!empty($errors))
+    @if($errors->any())
+        <script type="text/javascript">
+            @foreach($errors->all() as $error)
+                M.toast({html: '{{ $error }}', classes: 'red'})
+            @endforeach
+        </script>
+    @endif
+@endif
 </body>
 </html>
