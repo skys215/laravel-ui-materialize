@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    <span>You are logged in!</span>
+    <span>@lang('You are logged in!')</span>
 @endsection
