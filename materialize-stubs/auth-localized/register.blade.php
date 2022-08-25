@@ -46,7 +46,7 @@
 
                 <div class="input-field">
                   <input id="password" name="password" type="password">
-                  <label for="password">{{ __('auth.password') }}</label>
+                  <label for="password">{{ __('Password') }}</label>
                   @error('password')
                     <span class="helper-text red-text">{{ $message }}</span>
                   @enderror
