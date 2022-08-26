@@ -24,7 +24,7 @@
 
           <div class="card card-login">
             <div class="card-content">
-              <span class="card-title">{{ __('auth.registration.title') }}</span>
+              <span class="card-title">{{ __('auth.register') }}</span>
               <form action="{{ route('register') }}" method="POST">
                 @csrf
 
@@ -60,7 +60,7 @@
                 <div class="input-field">
                   <label>
                   <input type="checkbox" />
-                    <span>{{ __('auth.registration.i_agree') }} <a href="#">{{ __('auth.registration.terms') }}</a>.</span>
+                    <span>{{ __('auth.registration.i_agree') }} <a href="#">{{ __('auth.registration.terms') }}</a></span>
                   </label>
                 </div>
 
