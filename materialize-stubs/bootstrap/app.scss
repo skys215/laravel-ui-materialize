@@ -34,7 +34,7 @@ nav a:active{
 
 main{
     position:relative;
-    min-height: calc(100vh - 64px - 50px);
+    min-height: calc(100vh - 64px - 140px);
 
     .page-action-btn {
         position: fixed;
@@ -52,12 +52,14 @@ main>div{
     .logo-container {
         padding: 0 16px;
         height: 64px;
-        line-height: 64px;
-        font-size: 24px;
+        line-height: 1.5;
+        display:flex;
+        align-items: center;
         border-bottom: 1px solid rgba(0,0,0,0.2);
         box-sizing: content-box;
 
         i.material-icons {
+            height: 36px;
             line-height: inherit;
         }
     }
