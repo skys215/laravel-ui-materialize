@@ -46,7 +46,7 @@
 
                 <br><br>
                 <div>
-                  <input class="btn right" type="submit" value="Log In">
+                  <input class="btn right" type="submit" value="{{ __('auth.sign_in') }}">
                   <a href="{{ route('register') }}" class="btn-flat">{{ __('auth.register') }}</a>
                 </div>
 
