@@ -9,7 +9,7 @@
 
 <li>
     <a href="{{ route('home') }}" class="{{ Request::is('home') ? 'active' : '' }}">
-        {{ __('Home') }}
+        {{ __('Dashboard') }}
         <i class="material-icons left">home</i>
     </a>
 </li>
